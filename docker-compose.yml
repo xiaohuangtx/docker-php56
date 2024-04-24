@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  php:
+    container_name: php56
+    image: xiaohuangtx/php56:latest
+    restart: always
+    privileged: true
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./www:/var/www/html"
+      
