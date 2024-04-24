@@ -14,7 +14,7 @@ RUN apt-get update && apt install -y --allow-unauthenticated \
     libpng-dev \
     libfreetype6-dev \
     && docker-php-ext-install -j$(nproc) redis pdo_mysql iconv mcrypt mbstring zip mysql bcmath gettext mysqli pcntl soap sockets xmlrpc shmop sysvsem \
-    && cd /home/freetype-2.8.1/ && ./configure --prefix=/usr/local/freetype && make && make install \
+    && cd /home/freetype-2.8.1/ && chmod -R 777 ./ && ./configure --prefix=/usr/local/freetype && make && make install \
     && docker-php-ext-configure gd --with-webp-dir=/usr/include/webp --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-freetype-dir=/usr/local/freetype \
     && docker-php-ext-install gd \
     && docker-php-ext-enable gd \
