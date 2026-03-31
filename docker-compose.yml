@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   php:
-    container_name: php56
-    image: xiaohuangtx/php56:latest
+    container_name: php82
+    image: xiaohuangtx/php82:latest
     restart: always
     privileged: true
     ports:

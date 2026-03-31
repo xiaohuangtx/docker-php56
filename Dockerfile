@@ -1,23 +1,21 @@
-FROM php:5.6.40-fpm
+FROM php:8.2-fpm
 
 COPY ./sources.list /etc/apt/sources.list
-COPY ./redis-4.3.0 /usr/src/php/ext/redis
-COPY ./freetype-2.8.1 /home/freetype-2.8.1
 COPY ./php.ini /usr/local/etc/php/php.ini
 
-RUN apt-get update && apt install -y --allow-unauthenticated \
+RUN apt-get update && apt-get install -y --allow-unauthenticated \
     libmcrypt-dev \
     libxml2-dev \
-    zip \
+    libzip-dev \
     libwebp-dev \
     libjpeg-dev \
     libpng-dev \
     libfreetype6-dev \
-    && docker-php-ext-install -j$(nproc) redis pdo_mysql iconv mcrypt mbstring zip mysql bcmath gettext mysqli pcntl soap sockets xmlrpc shmop sysvsem \
-    && cd /home/freetype-2.8.1/ && chmod -R 777 ./ && ./configure --prefix=/usr/local/freetype && make && make install \
-    && docker-php-ext-configure gd --with-webp-dir=/usr/include/webp --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-freetype-dir=/usr/local/freetype \
-    && docker-php-ext-install gd \
-    && docker-php-ext-enable gd \
-    && rm -rf /home/freetype-2.8.1
-    
+    && docker-php-ext-install -j$(nproc) pdo_mysql iconv mbstring zip bcmath gettext mysqli pcntl soap sockets shmop sysvsem \
+    && docker-php-ext-configure gd --with-webp --with-jpeg --with-freetype \
+    && docker-php-ext-install -j$(nproc) gd \
+    && pecl install redis && docker-php-ext-enable redis \
+    && pecl install mcrypt && docker-php-ext-enable mcrypt \
+    && pecl install xmlrpc-beta && docker-php-ext-enable xmlrpc \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
