@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --allow-unauthenticated \
     libjpeg-dev \
     libpng-dev \
     libfreetype6-dev \
+    libonig-dev \
     && docker-php-ext-install -j$(nproc) pdo_mysql iconv mbstring zip bcmath gettext mysqli pcntl soap sockets shmop sysvsem \
     && docker-php-ext-configure gd --with-webp --with-jpeg --with-freetype \
     && docker-php-ext-install -j$(nproc) gd \
