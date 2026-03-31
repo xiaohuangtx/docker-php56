@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.2-fpm-bookworm
 
 COPY ./sources.list /etc/apt/sources.list
 COPY ./php.ini /usr/local/etc/php/php.ini
