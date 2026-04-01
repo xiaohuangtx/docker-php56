@@ -4,8 +4,8 @@
 version: '3.8'
 services:
   php:
-    container_name: php82
-    image: ghcr.io/xiaohuangtx/php82:latest
+    container_name: php84
+    image: ghcr.io/xiaohuangtx/php84:latest
     restart: always
     privileged: true
     ports:
@@ -18,7 +18,7 @@ services:
 ```bash  
 [PHP Modules] 
 bcmath Core ctype curl date dom fileinfo filter 
-ftp gd gettext hash iconv json libxml mbstring mcrypt 
+ftp gd gettext hash iconv intl json libxml mbstring mcrypt 
 mysqli mysqlnd openssl pcntl pcre PDO 
 pdo_mysql pdo_sqlite Phar posix readline redis 
 Reflection session shmop SimpleXML soap sockets SPL 

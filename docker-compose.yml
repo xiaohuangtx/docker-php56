@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   php:
-    container_name: php82
-    image: ghcr.io/xiaohuangtx/php82:latest
+    container_name: php84
+    image: ghcr.io/xiaohuangtx/php84:latest
     restart: always
     privileged: true
     ports:
