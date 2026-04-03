@@ -1,6 +1,5 @@
 FROM php:8.4-fpm-bookworm
 
-COPY ./sources.list /etc/apt/sources.list
 COPY ./php.ini /usr/local/etc/php/php.ini
 
 RUN apt-get update && apt-get install -y --allow-unauthenticated \
