@@ -9,8 +9,8 @@ on: workflow_dispatch
 # 定义 APP_NAME 用于 docker build-args
 # 定义 DOCKERHUB_REPO 标记 docker hub repo 名称
 env:
-  APP_NAME: php56
-  DOCKERHUB_REPO: xiaohuangtx/php56
+  APP_NAME: php
+  DOCKERHUB_REPO: xiaohuangtx/php
 
 jobs:
   main:
@@ -19,16 +19,16 @@ jobs:
     steps:
       # git checkout 代码
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
       # 设置 QEMU, 后面 docker buildx 依赖此.
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v4
       # 设置 Docker buildx, 方便构建 Multi platform 镜像
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v4
       # 登录 docker hub
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v4
         with:
           # GitHub Repo => Settings => Secrets 增加 docker hub 登录密钥信息
           # DOCKERHUB_USERNAME 是 docker hub 账号名.
@@ -41,7 +41,7 @@ jobs:
       # 构建 Docker 并推送到 Docker hub
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v7
         with:
           # 是否 docker push
           push: true
