@@ -10,12 +10,11 @@ RUN apt-get update && apt-get install -y --allow-unauthenticated \
     libjpeg-dev \
     libpng-dev \
     libfreetype6-dev \
-    libonig-dev \
     libicu-dev \
-    && docker-php-ext-install -j$(nproc) pdo_mysql iconv mbstring zip bcmath gettext mysqli pcntl soap sockets shmop sysvsem intl ftp \
+    && docker-php-ext-install -j$(nproc) pdo_mysql zip bcmath gettext mysqli pcntl soap sockets shmop sysvsem intl ftp \
     && docker-php-ext-configure gd --with-webp --with-jpeg --with-freetype \
     && docker-php-ext-install -j$(nproc) gd \
-    && pecl install redis && docker-php-ext-enable redis \
+    && pecl install redis-6.3.0 && docker-php-ext-enable redis \
     && pecl install mcrypt && docker-php-ext-enable mcrypt \
     && pecl install xmlrpc-beta && docker-php-ext-enable xmlrpc \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
