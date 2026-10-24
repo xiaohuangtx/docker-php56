@@ -1,7 +1,7 @@
 services:
   php:
     container_name: php
-    image: xiaohuangtx/php:8.4
+    image: xiaohuangtx/php:8.5.12
     restart: always
     privileged: true
     ports:
